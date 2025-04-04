@@ -94,7 +94,7 @@ dark_mode_watcher = None
 was_floating_mode = False  # 浮窗状态
 
 if config_center.read_conf('Other', 'do_not_log') != '1':
-    logger.add(f"{base_directory}/log/ClassWidgets_main_{{time}}.log", rotation="1 MB", encoding="utf-8",
+    logger.add(f"{base_directory}/logs/ClassWidgets_main_{{time}}.log", rotation="1 MB", encoding="utf-8",
                retention="1 minute")
     logger.info('未禁用日志输出')
 else:
@@ -1122,7 +1122,7 @@ class openProgressDialog(QWidget):
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
+        font_path = f'{base_directory}/font/MiSans-Medium.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1385,7 +1385,7 @@ class FloatingWidget(QWidget):  # 浮窗
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
+        font_path = f'{base_directory}/font/MiSans-Medium.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1955,7 +1955,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             self.backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
+        font_path = f'{base_directory}/font/MiSans-Medium.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
