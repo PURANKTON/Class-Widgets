@@ -50,7 +50,7 @@
         <x>0</x>
         <y>0</y>
         <width>773</width>
-        <height>716</height>
+        <height>735</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -103,7 +103,7 @@
               <bool>true</bool>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -118,7 +118,7 @@
             <string>Class Widgets</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -128,7 +128,7 @@
             <string>版本：获取失败！</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -141,7 +141,7 @@
             <string>Class Widgets 是一款能显示当前课程的桌面组件App。其提供了直观的图形化课程表编辑和美观的桌面组件。</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
            <property name="wordWrap">
             <bool>true</bool>
@@ -151,7 +151,7 @@
          <item>
           <spacer name="verticalSpacer_2">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -169,59 +169,6 @@
            <property name="rightMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="PushButton" name="button_github">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>360</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>此项目的 Github</string>
-             </property>
-             <property name="hasIcon" stdset="0">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="PushButton" name="button_bilibili">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>360</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>我的 哔哩哔哩 主页</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
          <item>
@@ -232,34 +179,6 @@
            <property name="rightMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="PushButton" name="button_show_license">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>360</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>查看开放源代码许可</string>
-             </property>
-             <property name="hasIcon" stdset="0">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
          <item>
@@ -270,34 +189,6 @@
            <property name="rightMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="PushButton" name="button_thanks">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>360</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>鸣谢</string>
-             </property>
-             <property name="hasIcon" stdset="0">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
         </layout>
@@ -472,11 +363,11 @@
              </layout>
             </item>
             <item>
-             <widget class="SwitchButton" name="auto_check_update">
-              <property name="onText">
+             <widget class="SwitchButton" name="auto_check_update" native="true">
+              <property name="onText" stdset="0">
                <string>启用</string>
               </property>
-              <property name="offText">
+              <property name="offText" stdset="0">
                <string>禁用</string>
               </property>
              </widget>
@@ -489,7 +380,7 @@
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -506,10 +397,10 @@
    <item>
     <widget class="CaptionLabel" name="CaptionLabel_2">
      <property name="text">
-      <string>Copyright © 2025 RinLit, All Rights Reversed.</string>
+      <string>Copyright © 2025 二部9班, All Rights Reversed.</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
      <property name="lightColor" stdset="0">
       <color>

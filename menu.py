@@ -516,8 +516,8 @@ class SettingsMenu(FluentWindow):
         self.cdInterface.setObjectName("cdInterface")
         self.adInterface = uic.loadUi(f'{base_directory}/view/menu/advance.ui')  # 高级选项
         self.adInterface.setObjectName("adInterface")
-        self.ifInterface = uic.loadUi(f'{base_directory}/view/menu/about.ui')  # 关于
-        self.ifInterface.setObjectName("ifInterface")
+        # self.ifInterface = uic.loadUi(f'{base_directory}/view/menu/about.ui')  # 关于
+        # self.ifInterface.setObjectName("ifInterface")
         self.ctInterface = uic.loadUi(f'{base_directory}/view/menu/custom.ui')  # 自定义
         self.ctInterface.setObjectName("ctInterface")
         self.cfInterface = uic.loadUi(f'{base_directory}/view/menu/configs.ui')  # 配置文件
@@ -542,7 +542,7 @@ class SettingsMenu(FluentWindow):
         self.setup_schedule_edit()
         self.setup_schedule_preview()
         self.setup_advance_interface()
-        self.setup_about_interface()
+        # self.setup_about_interface()
         self.setup_customization_interface()
         self.setup_configs_interface()
         self.setup_sound_interface()
@@ -788,9 +788,9 @@ class SettingsMenu(FluentWindow):
             lambda: config_center.write_conf("Other", "version_channel", self.version_channel.currentIndex())
         )  # 版本更新通道
 
-        github_page = self.findChild(PushButton, "button_github")
-        github_page.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
-            'https://github.com/ZhngJaH/Class-Widgets')))
+        # github_page = self.findChild(PushButton, "button_github")
+        # github_page.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
+        #     'https://github.com/ZhngJaH/Class-Widgets')))
 
         # bilibili_page = self.findChild(PushButton, 'button_bilibili')
         # bilibili_page.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
@@ -2087,7 +2087,7 @@ class SettingsMenu(FluentWindow):
         self.addSubInterface(self.ctInterface, fIcon.BRUSH, '自定义', NavigationItemPosition.BOTTOM)
         self.addSubInterface(self.sdInterface, fIcon.RINGER, '提醒', NavigationItemPosition.BOTTOM)
         self.addSubInterface(self.adInterface, fIcon.SETTING, '高级选项', NavigationItemPosition.BOTTOM)
-        self.addSubInterface(self.ifInterface, fIcon.INFO, '关于本产品', NavigationItemPosition.BOTTOM)
+        # self.addSubInterface(self.ifInterface, fIcon.INFO, '关于本产品', NavigationItemPosition.BOTTOM)
 
     def init_window(self):
         self.stackedWidget.setCurrentIndex(0)  # 设置初始页面

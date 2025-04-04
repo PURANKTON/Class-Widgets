@@ -1512,7 +1512,7 @@ class FloatingWidget(QWidget):  # 浮窗
             if current_pos.y() > screen_center_y:  # 下半屏
                 # 屏幕底部
                 target_y = screen_geometry.bottom() + self.height() + 10
-                # 任务栏补偿
+                # 任务栏再给你加点儿
                 if platform.system() == "Windows":
                     target_y += 30
                 
