@@ -1122,7 +1122,7 @@ class openProgressDialog(QWidget):
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/MiSans-Medium.ttf'
+        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1385,7 +1385,7 @@ class FloatingWidget(QWidget):  # 浮窗
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/MiSans-Medium.ttf'
+        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1955,7 +1955,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             self.backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/MiSans-Medium.ttf'
+        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1989,13 +1989,13 @@ class DesktopWidget(QWidget):  # 主要小组件
         ])
         self.tray_menu.addSeparator()
         self.tray_menu.addActions([
-            Action(fIcon.SHOPPING_CART, '插件广场', triggered=open_plaza),
-            Action(fIcon.DEVELOPER_TOOLS, '额外选项', triggered=self.open_extra_menu),
+            # Action(fIcon.SHOPPING_CART, '插件广场', triggered=open_plaza),
+            Action(fIcon.DEVELOPER_TOOLS, '小调课', triggered=self.open_extra_menu),
             Action(fIcon.SETTING, '设置', triggered=open_settings)
         ])
         self.tray_menu.addSeparator()
         self.tray_menu.addAction(Action(fIcon.SYNC, '重新启动', triggered=restart))
-        self.tray_menu.addAction(Action(fIcon.CLOSE, '退出', triggered=stop))
+        self.tray_menu.addAction(Action(fIcon.CLOSE, '再见了妈妈', triggered=stop))
         utils.tray_icon.setContextMenu(self.tray_menu)
 
         utils.tray_icon.activated.connect(self.on_tray_icon_clicked)
@@ -2376,7 +2376,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             ex_menu = ExtraMenu()
             ex_menu.show()
             ex_menu.destroyed.connect(self.cleanup_extra_menu)
-            logger.info('打开“额外选项”')
+            logger.info('打开“调课”')
         else:
             ex_menu.raise_()
             ex_menu.activateWindow()
@@ -2774,7 +2774,7 @@ if __name__ == '__main__':
         logger.warning("当前缩放系数可能导致显示异常，建议使缩放系数在 100% 到 180% 之间")
         msg_box = Dialog('缩放系数过大',
                          f"当前缩放系数为 {scale_factor * 100}%，可能导致显示异常。\n建议将缩放系数设置为 100% 到 180% 之间。")
-        msg_box.yesButton.setText('好')
+        msg_box.yesButton.setText('行')
         msg_box.cancelButton.hide()
         msg_box.buttonLayout.insertStretch(0, 1)
         msg_box.setFixedWidth(550)
@@ -2800,10 +2800,10 @@ if __name__ == '__main__':
     if share.attach() and config_center.read_conf('Other', 'multiple_programs') != '1':
         msg_box = Dialog(
             'Class Widgets 正在运行',
-            'Class Widgets 正在运行！请勿打开多个实例，否则将会出现不可预知的问题。'
-            '\n(若您需要打开多个实例，请在“设置”->“高级选项”中启用“允许程序多开”)'
+            '不！许！多！开！\n'
+            '屏幕烫手吗？点那么多下？？？？？？？？？'
         )
-        msg_box.yesButton.setText('好')
+        msg_box.yesButton.setText('行')
         msg_box.cancelButton.hide()
         msg_box.buttonLayout.insertStretch(0, 1)
         msg_box.setFixedWidth(550)

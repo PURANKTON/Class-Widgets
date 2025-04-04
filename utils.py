@@ -168,7 +168,7 @@ class TrayIcon(QSystemTrayIcon):
     def push_update_notification(self, text=''):
         self.setIcon(QIcon(f"{base_directory}/img/logo/favicon-update.png"))  # tray
         self.showMessage(
-            "发现 Class Widgets 新版本！",
+            "发现新版本！",
             text,
             QIcon(f"{base_directory}/img/logo/favicon-update.png"),
             5000

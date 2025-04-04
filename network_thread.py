@@ -248,7 +248,7 @@ class VersionThread(QThread):  # 获取最新版本号
 
     @staticmethod
     def get_latest_version():
-        url = "https://classwidgets.rinlit.cn/version.json"
+        url = "https://www.zhngjah.space/view/classwidgets/version.json"
         try:
             logger.info(f"正在获取版本信息")
             response = requests.get(url, proxies=proxies, timeout=30)
@@ -414,7 +414,7 @@ def check_version(version):  # 检查更新
         return False
     
     channel = int(config_center.read_conf("Other", "version_channel"))
-    server_version = version['version_release' if channel == 0 else 'version_beta']
+    server_version = version['version_release']
     local_version = config_center.read_conf("Other", "version")
     logger.debug(f"服务端版本: {Version(server_version)}，本地版本: {Version(local_version)}")
     if Version(server_version) > Version(local_version):
