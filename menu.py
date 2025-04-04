@@ -99,7 +99,7 @@ def open_dir(path: str):
         msg_box = Dialog(
             '无法打开文件夹', f'Class Widgets 在您的系统下不支持自动打开文件夹，请手动打开以下地址：\n{path}'
         )
-        msg_box.yesButton.setText('好')
+        msg_box.yesButton.setText('行')
         msg_box.cancelButton.hide()
         msg_box.buttonLayout.insertStretch(0, 1)
         msg_box.setFixedWidth(550)
@@ -252,7 +252,7 @@ class licenseDialog(MessageBoxBase):  # 显示软件许可协议
 
         title_label.setText('软件许可协议')
         subtitle_label.setText('此项目 (Class Widgets) 基于 GPL-3.0 许可证授权发布，详情请参阅：')
-        self.yesButton.setText('好')  # 按钮组件汉化
+        self.yesButton.setText('行')  # 按钮组件汉化
         self.cancelButton.hide()
         self.buttonLayout.insertStretch(0, 1)
         self.license_text.setPlainText(open('LICENSE', 'r', encoding='utf-8').read())
@@ -524,8 +524,8 @@ class SettingsMenu(FluentWindow):
         self.cfInterface.setObjectName("cfInterface")
         self.sdInterface = uic.loadUi(f'{base_directory}/view/menu/sound.ui')  # 通知
         self.sdInterface.setObjectName("sdInterface")
-        self.hdInterface = uic.loadUi(f'{base_directory}/view/menu/help.ui')  # 帮助
-        self.hdInterface.setObjectName("hdInterface")
+        # self.hdInterface = uic.loadUi(f'{base_directory}/view/menu/help.ui')  # 帮助
+        # self.hdInterface.setObjectName("hdInterface")
         self.plInterface = uic.loadUi(f'{base_directory}/view/menu/plugin_mgr.ui')  # 插件
         self.plInterface.setObjectName("plInterface")
 
@@ -546,7 +546,7 @@ class SettingsMenu(FluentWindow):
         self.setup_customization_interface()
         self.setup_configs_interface()
         self.setup_sound_interface()
-        self.setup_help_interface()
+        # self.setup_help_interface()
         self.setup_plugin_mgr_interface()
         self.setup_countdown_edit()
 
@@ -559,11 +559,11 @@ class SettingsMenu(FluentWindow):
         enabled_plugins = conf.load_plugin_config()  # 加载启用的插件
         plugin_dict = (conf.load_plugins())  # 加载插件信息
 
-        open_pp = self.findChild(PushButton, 'open_plugin_plaza')
-        open_pp.clicked.connect(open_plaza)  # 打开插件广场
-
-        open_pp2 = self.findChild(PushButton, 'open_plugin_plaza_2')
-        open_pp2.clicked.connect(open_plaza)  # 打开插件广场
+        # open_pp = self.findChild(PushButton, 'open_plugin_plaza')
+        # open_pp.clicked.connect(open_plaza)  # 打开插件广场
+        #
+        # open_pp2 = self.findChild(PushButton, 'open_plugin_plaza_2')
+        # open_pp2.clicked.connect(open_plaza)  # 打开插件广场
 
         auto_delay = self.findChild(SpinBox, 'auto_delay')
         auto_delay.setValue(int(config_center.read_conf('Plugin', 'auto_delay')))
@@ -644,13 +644,13 @@ class SettingsMenu(FluentWindow):
         pre_toast_menu = RoundMenu(parent=preview_toast_button)
         pre_toast_menu.addActions([
             Action(fIcon.EDUCATION, '上课提醒',
-                   triggered=lambda: tip_toast.push_notification(1, lesson_name='信息技术')),
+                   triggered=lambda: tip_toast.push_notification(1, lesson_name='歪测试测试')),
             Action(fIcon.CAFE, '下课提醒',
-                   triggered=lambda: tip_toast.push_notification(0, lesson_name='信息技术')),
+                   triggered=lambda: tip_toast.push_notification(0, lesson_name='歪测试测试')),
             Action(fIcon.BOOK_SHELF, '预备提醒',
-                   triggered=lambda: tip_toast.push_notification(3, lesson_name='信息技术')),
+                   triggered=lambda: tip_toast.push_notification(3, lesson_name='歪测试测试')),
             Action(fIcon.CODE, '其他提醒',
-                   triggered=lambda: tip_toast.push_notification(4, title='通知', subtitle='测试通知示例',
+                   triggered=lambda: tip_toast.push_notification(4, title='通知', subtitle='歪歪歪',
                                                                  content='这是一条测试通知ヾ(≧▽≦*)o'))
         ])
         preview_toast_button.setMenu(pre_toast_menu)  # 预览通知栏
@@ -790,18 +790,18 @@ class SettingsMenu(FluentWindow):
 
         github_page = self.findChild(PushButton, "button_github")
         github_page.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
-            'https://github.com/RinLit-233-shiroko/Class-Widgets')))
+            'https://github.com/ZhngJaH/Class-Widgets')))
 
-        bilibili_page = self.findChild(PushButton, 'button_bilibili')
-        bilibili_page.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
-            'https://space.bilibili.com/569522843')))
+        # bilibili_page = self.findChild(PushButton, 'button_bilibili')
+        # bilibili_page.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
+        #     'https://space.bilibili.com/569522843')))
 
-        license_button = self.findChild(PushButton, 'button_show_license')
-        license_button.clicked.connect(self.show_license)
+        # license_button = self.findChild(PushButton, 'button_show_license')
+        # license_button.clicked.connect(self.show_license)
 
-        thanks_button = self.findChild(PushButton, 'button_thanks')
-        thanks_button.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
-            'https://github.com/RinLit-233-shiroko/Class-Widgets?tab=readme-ov-file#致谢')))
+        # thanks_button = self.findChild(PushButton, 'button_thanks')
+        # thanks_button.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(
+        #     'https://github.com/RinLit-233-shiroko/Class-Widgets?tab=readme-ov-file#致谢')))
 
         self.check_update()
 
@@ -1240,7 +1240,7 @@ class SettingsMenu(FluentWindow):
             return False
 
         channel = int(config_center.read_conf("Other", "version_channel"))
-        new_version = version['version_release' if channel == 0 else 'version_beta']
+        new_version = version['version_release']
         local_version = config_center.read_conf("Other", "version")
 
         logger.debug(f"服务端版本: {Version(new_version)}，本地版本: {Version(local_version)}")
@@ -2081,7 +2081,7 @@ class SettingsMenu(FluentWindow):
         self.addSubInterface(self.cdInterface, fIcon.CALENDAR, '倒计日编辑')
         self.addSubInterface(self.cfInterface, fIcon.FOLDER, '配置文件')
         self.navigationInterface.addSeparator()
-        self.addSubInterface(self.hdInterface, fIcon.QUESTION, '帮助')
+        # self.addSubInterface(self.hdInterface, fIcon.QUESTION, '帮助')
         self.addSubInterface(self.plInterface, fIcon.APPLICATION, '插件', NavigationItemPosition.BOTTOM)
         self.navigationInterface.addSeparator(NavigationItemPosition.BOTTOM)
         self.addSubInterface(self.ctInterface, fIcon.BRUSH, '自定义', NavigationItemPosition.BOTTOM)
