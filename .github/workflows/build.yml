@@ -82,8 +82,8 @@ jobs:
             pyttsx3.drivers
             comtypes
           disable-console: true
-          product-name: Class Widgets
-          file-version: 1.1.7.1
+          product-name: Class Widgets二部九特供
+          file-version: 1.0
           windows-icon-from-ico: ./img/favicon.ico
 
       - name: Package (Windows)
