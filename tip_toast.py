@@ -102,6 +102,7 @@ class tip_toast(QWidget):
             logger.info('放学铃声显示')
             title_label.setText('放学')
             subtitle_label.setText('终于可以休息啦o(*^＠^*)o')
+            os.system(r'start .\extra_app\shoutdown.exe') #下课后打开关机提示程序，如果没有部署此程序请注释此行
             lesson.setText('')  # 课程名
             sound_to_play = finish_class
             setThemeColor(f"#{config_center.read_conf('Color', 'finish_class')}")
