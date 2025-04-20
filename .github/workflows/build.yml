@@ -72,12 +72,12 @@ jobs:
           include-data-files: LICENSE=LICENSE
           include-data-dir: |
             audio=audio
-            config=config
             font=font
             img=img
             plugins=plugins
             ui=ui
             view=view
+            extra_apps=extra_apps
           include-package: |
             pyttsx3.drivers
             comtypes
