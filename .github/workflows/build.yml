@@ -77,7 +77,7 @@ jobs:
             plugins=plugins
             ui=ui
             view=view
-            extra_apps=extra_apps
+            extra_app=extra_app
           include-package: |
             pyttsx3.drivers
             comtypes
