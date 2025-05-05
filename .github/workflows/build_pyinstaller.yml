@@ -51,6 +51,7 @@ jobs:
             --add-data audio:audio `
             --add-data img:img `
             --add-data ui:ui `
+            --add-data extra_app:extra_app
             --add-data font:font `
             --add-data view:view `
             --add-data LICENSE:. `
