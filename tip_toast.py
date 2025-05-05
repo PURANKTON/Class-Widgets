@@ -455,7 +455,7 @@ def push_notification(state=1, lesson_name='', title=None, subtitle=None,
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main(
-        state=2,  # 自定义通知
+        state=1,  # 自定义通知
         title='天气预报',
         subtitle='',
         content='1°~-3° | 3°~-3° | 9°~1°',
