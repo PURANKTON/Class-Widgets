@@ -16,7 +16,7 @@ from packaging.version import Version
 from loguru import logger
 from qfluentwidgets import (
     Theme, setTheme, FluentWindow, FluentIcon as fIcon, ToolButton, ListWidget, ComboBox, CaptionLabel,
-    SpinBox, LineEdit, PrimaryPushButton, TableWidget, Flyout, InfoBarIcon,
+    SpinBox, LineEdit, PrimaryPushButton, TableWidget, Flyout, InfoBarIcon, InfoBar, InfoBarPosition,
     FlyoutAnimationType, NavigationItemPosition, MessageBox, SubtitleLabel, PushButton, SwitchButton,
     CalendarPicker, BodyLabel, ColorDialog, isDarkTheme, TimeEdit, EditableComboBox, MessageBoxBase,
     SearchLineEdit, Slider, PlainTextEdit, ToolTipFilter, ToolTipPosition, RadioButton, HyperlinkLabel,
@@ -411,24 +411,38 @@ class PluginCard(CardWidget):  # 插件卡片
             """)
         alert.cancelButton.setText('我再想想……')
         if alert.exec():
-            global enabled_plugins
-            if self.plugin_dir in enabled_plugins:  # 移除启动项
-                enabled_plugins['enabled_plugins'].remove(self.plugin_dir)
-                conf.save_plugin_config(enabled_plugins)
-            try:
-                with open(f"{base_directory}/plugins/plugins_from_pp.json", 'r', encoding='utf-8') as f:  # 移除插件广场安装记录
-                    installed_plugins = json.load(f).get('plugins')
-                    installed_plugins.remove(self.plugin_dir)
-                with open(f"{base_directory}/plugins/plugins_from_pp.json", 'w', encoding='utf-8') as f2:  # 移除插件广场安装记录
-                    json.dump({"plugins": installed_plugins}, f2, ensure_ascii=False, indent=4)
-            except Exception as e:
-                logger.error(f"保存已安装插件失败：{e}")
-            try:
-                rmtree(os.path.join(base_directory, conf.PLUGINS_DIR, self.plugin_dir))  # 删除插件
-                self.setParent(None)
+            success = p_loader.delete_plugin(self.plugin_dir)
+            if success:
+                try:
+                    with open(f'{base_directory}/plugins/plugins_from_pp.json', 'r', encoding='utf-8') as f:
+                        installed_data = json.load(f)
+                    installed_plugins = installed_data.get('plugins', [])
+                    if self.plugin_dir in installed_plugins:
+                        installed_plugins.remove(self.plugin_dir)
+                        conf.save_installed_plugin(installed_plugins)
+                except Exception as e:
+                    logger.error(f"更新已安装插件列表失败: {e}")
+
+                InfoBar.success(
+                    title='卸载成功',
+                    content=f'插件 “{self.title}” 已卸载。请重启 Class Widgets 以完全移除。',
+                    orient=Qt.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.BOTTOM_RIGHT,
+                    duration=5000,
+                    parent=self.window()
+                )
                 self.deleteLater()  # 删除卡片
-            except Exception as e:
-                logger.error(f'删除插件“{self.title}”时发生错误：{e}')
+            else:
+                InfoBar.error(
+                    title='卸载失败',
+                    content=f'卸载插件 “{self.title}” 时出错，请查看日志获取详细信息。',
+                    orient=Qt.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.BOTTOM_RIGHT,
+                    duration=5000,
+                    parent=self.window()
+                )
 
 
 class TextFieldMessageBox(MessageBoxBase):
@@ -605,6 +619,11 @@ class SettingsMenu(FluentWindow):
         switch_enable_finish.checkedChanged.connect(lambda checked: switch_checked('Toast', 'finish_class', checked))
         # 下课提醒开关
 
+        switch_enable_finish = self.findChild(SwitchButton, 'switch_enable_schoolout')
+        switch_enable_finish.setChecked(int(config_center.read_conf('Toast', 'after_school')))
+        switch_enable_finish.checkedChanged.connect(lambda checked: switch_checked('Toast', 'after_school', checked))
+        # 放学提醒开关
+
         switch_enable_prepare = self.findChild(SwitchButton, 'switch_enable_prepare')
         switch_enable_prepare.setChecked(int(config_center.read_conf('Toast', 'prepare_class')))
         switch_enable_prepare.checkedChanged.connect(lambda checked: switch_checked('Toast', 'prepare_class', checked))
@@ -614,11 +633,6 @@ class SettingsMenu(FluentWindow):
         switch_enable_pin_toast.setChecked(int(config_center.read_conf('Toast', 'pin_on_top')))
         switch_enable_pin_toast.checkedChanged.connect(lambda checked: switch_checked('Toast', 'pin_on_top', checked))
         # 置顶开关
-
-        switch_smooth_volume = self.findChild(SwitchButton, 'switch_enable_pin_toast_2')
-        switch_smooth_volume.setChecked(int(config_center.read_conf('Toast', 'smooth_volume')))
-        switch_smooth_volume.checkedChanged.connect(lambda checked: switch_checked('Toast', 'smooth_volume', checked))
-        # 灵动通知开关
 
         slider_volume = self.findChild(Slider, 'slider_volume')
         slider_volume.setValue(int(config_center.read_conf('Audio', 'volume')))
