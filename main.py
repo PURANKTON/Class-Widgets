@@ -68,6 +68,7 @@ qss.styleSheetManager = StyleSheetManager()
 import conf
 import list_
 import tip_toast
+from tip_toast import active_windows
 import utils
 import weather_db as db
 from conf import base_directory
@@ -1276,6 +1277,8 @@ class FloatingWidget(QWidget):  # 浮窗
 
     def _ensure_topmost(self):
         # 始终处于顶层
+        if active_windows:
+            return
         if os.name == 'nt':
             try:
                 hwnd = self.winId().__int__()
@@ -1904,6 +1907,8 @@ class DesktopWidget(QWidget):  # 主要小组件
 
     def _ensure_topmost(self):
         # 突然忘记写移除了,不写了,应该没事(
+        if active_windows:
+            return
         if os.name == 'nt':
             try:
                 hwnd = self.winId().__int__()
@@ -2148,6 +2153,12 @@ class DesktopWidget(QWidget):  # 主要小组件
             self.get_weather_data()
 
     def toggle_weather_alert(self):
+        if not hasattr(self, 'weather_alert_level') or not self.weather_alert_level:
+            # logger.warning("未获取到天气预警等级")
+            return
+        if not hasattr(self, 'weather_alert_text') or not self.weather_alert_text.text():
+            # logger.warning("未获取到天气预警文本")
+            return
         if self.showing_temperature:
             # 切换预警
             self.weather_alert_animation.setStartValue(0.0)
@@ -2198,7 +2209,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             except TypeError: pass
 
             def _start_alert_fade_in():
-                if hasattr(self, 'alert_icon') and self.alert_icon and hasattr(self.alert_icon, 'icon') and not self.alert_icon.icon().isNull():
+                if hasattr(self, 'alert_icon') and isinstance(self.alert_icon, IconWidget) and self.alert_icon.icon() is not None and not self.alert_icon.icon().isNull():
                     self.weather_icon.hide()
                     self.temperature.hide()
                     self.weather_alert_opacity.setOpacity(0.0)
@@ -2208,12 +2219,11 @@ class DesktopWidget(QWidget):  # 主要小组件
                     self.fade_in_group.start()
                     self.weather_info_timer.start(3000)
                 else:
-                    # 如果没有图标，直接显示天气信息
                     self.weather_icon.show()
                     self.temperature.show()
                     if hasattr(self, 'weather_opacity'): self.weather_opacity.setOpacity(1.0)
                     if hasattr(self, 'temperature_opacity'): self.temperature_opacity.setOpacity(1.0)
-                    self.showing_temperature = True # 确保状态正确
+                    self.showing_temperature = True
 
             self.fade_out_group.finished.connect(_start_alert_fade_in)
 
