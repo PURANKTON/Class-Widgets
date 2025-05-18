@@ -418,7 +418,7 @@ def check_version(version):  # 检查更新
     local_version = config_center.read_conf("Other", "version")
     logger.debug(f"服务端版本: {Version(server_version)}，本地版本: {Version(local_version)}")
     if Version(server_version) > Version(local_version):
-        utils.tray_icon.push_update_notification(f"新版本速递：{server_version}\n请在“设置”中了解更多。")
+        utils.tray_icon.push_update_notification(f"服务端版本: {Version(server_version)}，本地版本: {Version(local_version)}\n请与管理员联系以获取更新。")
 
 class weatherReportThread(QThread):  # 获取最新天气信息
     weather_signal = pyqtSignal(dict)
