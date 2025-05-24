@@ -1,13 +1,14 @@
 import sys
 
 import os
+import  time
+
 from PyQt5 import uic
 from PyQt5.QtCore import Qt, QPropertyAnimation, QRect, QEasingCurve, QTimer, QPoint, pyqtProperty, QThread
 from PyQt5.QtGui import QColor, QPainter, QBrush, QPixmap
 from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QFrame, QGraphicsBlurEffect
 from loguru import logger
 from qfluentwidgets import setThemeColor
-from win32api import Sleep
 
 import conf
 from conf import base_directory
@@ -36,7 +37,6 @@ normal_color = '#56CFD8'
 
 window_list = []  # 窗口列表
 active_windows = []
-
 
 class tip_toast(QWidget):
     def __init__(self, pos, width, state=1, lesson_name=None, title=None, subtitle=None, content=None, icon=None, duration=2000):
@@ -107,9 +107,16 @@ class tip_toast(QWidget):
             sound_to_play = finish_class
             setThemeColor(f"#{config_center.read_conf('Color', 'finish_class')}")
             #离班提示
-            Sleep(2)
             exe_path = os.path.join('.', 'extra_app', 'Shutdown_Prompt.exe')
-            os.system(exe_path)
+            # exe_path = os.path.join('.', 'extra_app', '1.txt')
+            if os.path.exists(exe_path):
+                for i in range(11):
+                    print(i)
+                    if i==10: os.system(exe_path)
+                    else: time.sleep(1)
+            # Sleep(10)
+            # exe_path = os.path.join('.', 'extra_app', 'Shutdown_Prompt.exe')
+            # os.system(exe_path)
         elif state == 3:
             logger.info('预备铃声显示')
             title_label.setText('要上课了')  # 同上
@@ -455,7 +462,7 @@ def push_notification(state=1, lesson_name='', title=None, subtitle=None,
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main(
-        state=1,  # 自定义通知
+        state=2,  # 自定义通知
         title='天气预报',
         subtitle='',
         content='1°~-3° | 3°~-3° | 9°~1°',
