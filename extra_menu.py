@@ -133,7 +133,7 @@ class ExtraMenu(FluentWindow):
             Flyout.create(
                 icon=InfoBarIcon.SUCCESS,
                 title='保存成功',
-                content=f"已保存至 ./config.ini \n重启后恢复。",
+                content=f"此次更改将于重启后恢复。",
                 target=self.findChild(PrimaryPushButton, 'save_temp_conf'),
                 parent=self,
                 isClosable=True,
