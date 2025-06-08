@@ -646,9 +646,7 @@ class ErrorDialog(Dialog):  # 重大错误提示框
 
         # 按钮事件
         self.report_problem.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl(
-                'https://github.com/Class-Widgets/Class-Widgets/issues/'
-                'new?assignees=&labels=Bug&projects=&template=BugReport.yml&title=[Bug]:'))
+            lambda: QDesktopServices.openUrl(QUrl('mailto:ZhngJah3@outlook.com'))
         )
         self.copy_log_btn.clicked.connect(self.copy_log)
         self.ignore_error_btn.clicked.connect(self.ignore_error)
