@@ -1122,7 +1122,7 @@ class openProgressDialog(QWidget):
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
+        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1385,7 +1385,7 @@ class FloatingWidget(QWidget):  # 浮窗
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
+        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1955,7 +1955,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             self.backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
+        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
