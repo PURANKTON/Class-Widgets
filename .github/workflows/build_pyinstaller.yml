@@ -254,13 +254,13 @@ jobs:
           curl -o zip.exe -L http://www.stahlworks.com/dev/zip.exe
           .\.venv\Scripts\activate
           pyinstaller main.py `
-            -w `
             -i ./img/favicon.ico `
             -n ClassWidgets `
             --contents-directory . `
             --add-data config:config `
             --add-data audio:audio `
             --add-data img:img `
+            --add-data extra_app:extra_app `
             --add-data ui:ui `
             --add-data font:font `
             --add-data view:view `
