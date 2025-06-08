@@ -86,7 +86,7 @@
              </property>
              <property name="maximumSize">
               <size>
-               <width>128</width>
+               <width>256</width>
                <height>128</height>
               </size>
              </property>
@@ -125,7 +125,7 @@
          <item>
           <widget class="CaptionLabel" name="CaptionLabel_3">
            <property name="text">
-            <string>Class Widgets 是一款能显示当前课程的桌面组件App。其提供了直观的图形化课程表编辑和美观的桌面组件。</string>
+            <string>Class Widgets ，临沂四中（西校区）24级二部9班和二部11班定制版</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -422,7 +422,7 @@
               </size>
              </property>
              <property name="text">
-              <string>我的 哔哩哔哩 主页</string>
+              <string>Sorasaku个人主页</string>
              </property>
             </widget>
            </item>
@@ -495,7 +495,7 @@
               </size>
              </property>
              <property name="text">
-              <string>鸣谢</string>
+              <string>MOEBBS(AD.)</string>
              </property>
              <property name="hasIcon" stdset="0">
               <bool>false</bool>
@@ -697,7 +697,7 @@
    <item>
     <widget class="CaptionLabel" name="CaptionLabel_2">
      <property name="text">
-      <string>Copyright © 2025 RinLit, All Rights Reversed.</string>
+      <string>Copyright © 2025 Sorasaku Yu, All Rights Reversed.</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
