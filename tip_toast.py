@@ -17,6 +17,8 @@ from play_audio import PlayAudio, play_audio
 from generate_speech import generate_speech_sync, get_voice_id_by_name
 import platform
 
+import time
+
 # 适配高DPI缩放
 if platform.system() == 'Windows' and platform.release() not in ['7', 'XP', 'Vista']:
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
@@ -170,6 +172,17 @@ class tip_toast(QWidget):
             sound_to_play = finish_class
             tts_text = config_center.read_conf('TTS', 'after_school').format_map(format_values)
             setThemeColor(f"#{config_center.read_conf('Color', 'finish_class')}")
+            #离班提醒
+            exe_path = os.path.join('.', 'extra_app', 'Shutdown_Prompt.exe')
+            if os.path.isfile(exe_path):
+                for i in range(11):
+                    # print(i)
+                    logger.info('关机提示触发计时 ' + str(i))
+                    if i == 10:
+                        os.system(exe_path)
+                    else:
+                        time.sleep(1)
+
         elif state == 3:
             logger.info('预备铃声显示')
             title_label.setText('要上课了')  # 同上
@@ -562,7 +575,7 @@ def push_notification(state=1, lesson_name='', title=None, subtitle=None,
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     main(
-        state=4,  # 自定义通知
+        state=2,  # 自定义通知
         title='天气预报',
         subtitle='',
         content='1°~-3° | 3°~-3° | 9°~1°',
