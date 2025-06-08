@@ -627,8 +627,8 @@ class SettingsMenu(FluentWindow):
         self.cfInterface.setObjectName("cfInterface")
         self.sdInterface = uic.loadUi(f'{base_directory}/view/menu/sound.ui')  # 通知
         self.sdInterface.setObjectName("sdInterface")
-        self.hdInterface = uic.loadUi(f'{base_directory}/view/menu/help.ui')  # 帮助
-        self.hdInterface.setObjectName("hdInterface")
+        # self.hdInterface = uic.loadUi(f'{base_directory}/view/menu/help.ui')  # 帮助
+        # self.hdInterface.setObjectName("hdInterface")
         self.plInterface = uic.loadUi(f'{base_directory}/view/menu/plugin_mgr.ui')  # 插件
         self.plInterface.setObjectName("plInterface")
         self.version_number_label = self.ifInterface.findChild(QLabel, 'version_number_label')
@@ -653,7 +653,7 @@ class SettingsMenu(FluentWindow):
         self.setup_customization_interface()
         self.setup_configs_interface()
         self.setup_sound_interface()
-        self.setup_help_interface()
+        # self.setup_help_interface()
         self.setup_plugin_mgr_interface()
         self.setup_countdown_edit()
 
@@ -2679,7 +2679,7 @@ class SettingsMenu(FluentWindow):
         self.addSubInterface(self.cdInterface, fIcon.CALENDAR, '倒计日编辑')
         self.addSubInterface(self.cfInterface, fIcon.FOLDER, '配置文件')
         self.navigationInterface.addSeparator()
-        self.addSubInterface(self.hdInterface, fIcon.QUESTION, '帮助')
+        # self.addSubInterface(self.hdInterface, fIcon.QUESTION, '帮助')
         self.addSubInterface(self.plInterface, fIcon.APPLICATION, '插件', NavigationItemPosition.BOTTOM)
         self.navigationInterface.addSeparator(NavigationItemPosition.BOTTOM)
         self.addSubInterface(self.ctInterface, fIcon.BRUSH, '自定义', NavigationItemPosition.BOTTOM)
