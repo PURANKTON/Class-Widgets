@@ -61,7 +61,7 @@ CONFIG_HOME = _get_app_dir(
 )
 LOG_HOME = _get_app_dir(
     purpose="LOG",
-    default_subdir="log",
+    default_subdir="logs",
     win_env_var="TMP",
     mac_subpath="Library/Caches",
     xdg_env_var="XDG_CACHE_HOME",
