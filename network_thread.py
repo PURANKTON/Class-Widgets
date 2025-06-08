@@ -248,7 +248,7 @@ class VersionThread(QThread):  # 获取最新版本号
 
     @staticmethod
     def get_latest_version():
-        url = "https://classwidgets.rinlit.cn/version.json"
+        url = "https://www.zhngjah.space/view/classwidgets/version.json"
         try:
             logger.info(f"正在获取版本信息")
             response = requests.get(url, proxies=proxies, timeout=30)
