@@ -646,7 +646,9 @@ class ErrorDialog(Dialog):  # 重大错误提示框
 
         # 按钮事件
         self.report_problem.clicked.connect(
-            lambda: QDesktopServices.openUrl(QUrl('mailto:ZhngJah3@outlook.com'))
+            lambda: QDesktopServices.openUrl(QUrl(
+                'https://github.com/Class-Widgets/Class-Widgets/issues/'
+                'new?assignees=&labels=Bug&projects=&template=BugReport.yml&title=[Bug]:'))
         )
         self.copy_log_btn.clicked.connect(self.copy_log)
         self.ignore_error_btn.clicked.connect(self.ignore_error)
@@ -718,7 +720,7 @@ class PluginManager:  # 插件管理器
             "Current_Lessons": current_lessons,  # 当前课程
             "Current_Week": current_week,  # 当前周次
             "Excluded_Lessons": excluded_lessons,  # 排除的课程
-            
+
             "Current_Time": current_time,  # 当前时间
             "Timeline_Data": timeline_data,  # 时间线数据
             "Parts_Start_Time": parts_start_time,  # 节点开始时间
@@ -1120,7 +1122,7 @@ class openProgressDialog(QWidget):
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
+        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1289,7 +1291,7 @@ class FloatingWidget(QWidget):  # 浮窗
                         pass
                     self._is_topmost_callback_added = False
                     logger.debug(f"因错误 {e} 移除浮窗置顶回调。")
-    
+
     def save_position(self):
         current_screen = QApplication.screenAt(self.pos())
         if not current_screen:
@@ -1383,7 +1385,7 @@ class FloatingWidget(QWidget):  # 浮窗
         backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
+        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
@@ -1430,7 +1432,7 @@ class FloatingWidget(QWidget):  # 浮窗
         logger.info('显示浮窗')
         current_screen = QApplication.screenAt(self.pos()) or QApplication.primaryScreen()
         screen_geometry = current_screen.availableGeometry()
-        
+
         if self.position:
             if self.position.y() > screen_geometry.center().y():
                 # 下半屏
@@ -1465,7 +1467,7 @@ class FloatingWidget(QWidget):  # 浮窗
         self.animation_rect.setDuration(600)
         self.animation_rect.setStartValue(QRect(start_pos, self.size()))
         self.animation_rect.setEndValue(QRect(self.position, self.size()))
-        
+
         if platform.system() == 'Darwin':
             self.animation_rect.setEasingCurve(QEasingCurve.Type.OutQuad)
         elif platform.system() == 'Windows':
@@ -1513,7 +1515,7 @@ class FloatingWidget(QWidget):  # 浮窗
                 # 任务栏补偿
                 if platform.system() == "Windows":
                     target_y += 30
-                
+
                 target_pos = QPoint(
                     main_widget.x(),
                     target_y
@@ -1528,7 +1530,7 @@ class FloatingWidget(QWidget):  # 浮窗
                 int(config_center.read_conf('General', 'margin'))
             )
             distance = abs(current_pos.y() - target_pos.y())
-        
+
         max_distance = screen_geometry.height()
         distance_ratio = min(distance / max_distance, 1.0)
         duration = int(base_duration + (max_duration - base_duration) * (distance_ratio ** 0.7))
@@ -1545,22 +1547,22 @@ class FloatingWidget(QWidget):  # 浮窗
             curve = QEasingCurve.Type.InOutQuad
         elif platform.system() == "Darwin":
             curve = QEasingCurve.Type.InOutQuad # macOS 也用这个吧
-        
+
         self.animation = QPropertyAnimation(self, b"windowOpacity")
         self.animation.setDuration(int(duration * 1.15))
         self.animation.setStartValue(self.windowOpacity())
         self.animation.setEndValue(0.0)
-        
+
         self.animation_rect = QPropertyAnimation(self, b"geometry")
         self.animation_rect.setDuration(duration)
         self.animation_rect.setStartValue(self.geometry())
         self.animation_rect.setEndValue(QRect(target_pos, self.size()))
         self.animation_rect.setEasingCurve(curve)
-        
+
         self.animating = True
         self.animation.start()
         self.animation_rect.start()
-        
+
         def cleanup():
             self.hide()
             self.save_position()
@@ -1571,7 +1573,7 @@ class FloatingWidget(QWidget):  # 浮窗
                 except ValueError:
                     pass
                 self._is_topmost_callback_added = False
-            
+
         self.animation_rect.finished.connect(cleanup)
 
     def hideEvent(self, event):
@@ -1630,7 +1632,7 @@ class FloatingWidget(QWidget):  # 浮窗
                 else:
                     mgr.show_windows()
                     mgr.hide_status = (current_state, 0)
-            elif hide_mode == '0': 
+            elif hide_mode == '0':
                 mgr.show_windows()
                 self.close()
 
@@ -1762,7 +1764,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             self.alert_icon_animation = QPropertyAnimation(self.alert_icon_opacity, b"opacity")
             self.alert_icon_animation.setDuration(700)
             self.alert_icon_animation.setEasingCurve(QEasingCurve.OutCubic)
-            
+
             self.showing_temperature = True  # 跟踪状态(预警/气温)
 
             self.weather_timer = QTimer(self)
@@ -1956,7 +1958,7 @@ class DesktopWidget(QWidget):  # 主要小组件
             self.backgnd.setGraphicsEffect(shadow_effect)
 
     def init_font(self):
-        font_path = f'{base_directory}/font/MiSans-Bold.ttf'
+        font_path = f'{base_directory}/font/HarmonyOS_Sans_SC_Bold.ttf'
         font_id = QFontDatabase.addApplicationFont(font_path)
         if font_id != -1:
             font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
