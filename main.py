@@ -30,7 +30,7 @@ import list_
 import tip_toast
 from tip_toast import active_windows
 import utils
-import weather_db as db
+import weather as db
 from conf import base_directory
 from extra_menu import ExtraMenu, open_settings
 from generate_speech import generate_speech_sync, list_pyttsx3_voices
