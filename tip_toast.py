@@ -14,7 +14,7 @@ from conf import base_directory
 import list_
 from file import config_center
 from play_audio import PlayAudio, play_audio
-from generate_speech import generate_speech_sync, get_voice_id_by_name
+from generate_speech import generate_speech_sync
 import platform
 
 import time
@@ -86,7 +86,7 @@ class tip_toast(QWidget):
             logger.debug("已有TTS线程正在运行")
             self.tts_audio_thread = None
         else:
-            self.tts_audio_thread = None 
+            self.tts_audio_thread = None
             tip_toast.active_tts_thread = None
 
         uic.loadUi(f"{base_directory}/view/widget-toast-bar.ui", self)
@@ -507,7 +507,7 @@ def main(state=1, lesson_name='', title='通知示例', subtitle='副标题',
     except AttributeError:
         dpr = 1.0
     dpr = max(1.0, dpr)
- 
+
     widgets_width = 0
     for widget in widgets:  # 计算总宽度(兼容插件)
         try:
@@ -522,7 +522,7 @@ def main(state=1, lesson_name='', title='通知示例', subtitle='副标题',
     start_x = int((screen_width - total_width) / 2)
     margin_base = int(config_center.read_conf('General', 'margin'))
     start_y = int(margin_base * dpr)
- 
+
     if state != 4:
         window = tip_toast((start_x, start_y), total_width, state, lesson_name, duration=duration)
     else:
